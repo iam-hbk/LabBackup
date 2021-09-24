@@ -1,0 +1,7 @@
+{
+  "name": "EventGA",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
