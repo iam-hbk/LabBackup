@@ -7,43 +7,54 @@
   align-items: center;
 }
 form {
+  width: 95vw;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 30px 2vw;
 }
-.input-field{
-  margin: 15px 10px 0 0;
-  padding: 10px;
+div.itm form{
+  width: 90%;
+}
+.input-field {
+  margin: 15px 10px 10px 0;
+  padding: 5px;
   border: none;
   border-bottom: 1px solid;
-
 }
-#selectImg{
+#selectImg {
   font-style: italic;
-  padding:10px;
-  background: rgba(0, 0, 0, 0.416);
+  padding: 10px;
+  cursor: pointer;
+  /* background: rgba(0, 0, 0, 0.416); */
 }
-.selectImg-prev{
+.selectImg-prev {
   font-style: italic;
-  padding:10px;
-  background: rgba(0, 0, 0, 0.416);
+  padding: 10px;
+  cursor: pointer;
 }
 div.img {
+  width: 90vw;
   margin: 20px;
   height: 250px;
-  width: 100%;
-  border: 2px solid black;
+  border: 2px dashed black;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
-div.img-preview{
+
+div.img-preview {
   margin: 10px 0 0 0;
   padding: 10px;
 }
 img {
-  width: 60%;
-  height: 250px;
+  margin: 5px;
+  width: inherit;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 textarea {
   margin: 20px 0;
@@ -53,7 +64,7 @@ div .items {
   width: 85%;
   padding: 10px;
 }
-#buttons{
+#buttons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,39 +78,42 @@ div.itm {
   width: 100%;
   position: relative;
 }
-div.itm img{
-  width:inherit;
+div.itm img {
+  width: inherit;
   height: 200px;
   position: relative;
 }
 div.itm span#editing {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  top: 0;
+  left: 0;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#deleteEvent{
-  border:none;
-  outline :none;
+#deleteEvent {
+  border: none;
+  outline: none;
   cursor: pointer;
   background-color: red;
   color: white;
   padding: 10px;
   border-radius: 5px;
   margin-right: 5px;
-
+  text-transform:uppercase;
+  box-shadow: 0 0 5px gray;
 
 }
-span#edit{
+span#edit {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 10px;
 }
-ion-button{
-  --background: rgb(4, 127, 4);
+ion-button {
+  --background: black;
+  /* border: 2px solid black; */
+  color: rgb(255, 255, 255);
 }

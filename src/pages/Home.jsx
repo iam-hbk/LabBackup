@@ -29,7 +29,7 @@ const Home = () => {
     setImg(null);
   };
 
-  const AddItem = () => {
+  const NewItem = () => {
     return (
       <form
         onSubmit={(e) => {
@@ -39,7 +39,7 @@ const Home = () => {
       >
         <div>
           <label id="selectImg" htmlFor="img">
-            Choose an image
+           + click here to upload an image
           </label>
           <input
             style={{ display: "none" }}
@@ -71,7 +71,7 @@ const Home = () => {
           className="input-field"
           name="about"
           id="about"
-          placeholder="About that day..."
+          placeholder="About that day"
         ></input>
         <div>
           <IonButton routerLink="/home" type="submit">
@@ -112,7 +112,7 @@ const Home = () => {
       >
         <div>
           <label className="selectImg-prev" htmlFor="img">
-            select an image
+            + select an image
           </label>
           <input
             style={{ display: "none" }}
@@ -203,7 +203,7 @@ const Home = () => {
                             }}
                           >
                             {isEdit && selectedElement == items.indexOf(e) ? (
-                              <MdCancel />
+                              "Cancel"
                             ) : (
                               "Edit"
                             )}
@@ -223,13 +223,13 @@ const Home = () => {
                     );
                   })}
                 </div>
-                <IonButton onClick={() => setNewItem(true)}>Add Item</IonButton>
+                <IonButton onClick={() => setNewItem(true)}>New Event</IonButton>
               </>
             ) : (
               ""
             )}
 
-            {IsnewItem ? <AddItem /> : ""}
+            {IsnewItem ? <NewItem /> : ""}
           </div>
         }
       </IonContent>
