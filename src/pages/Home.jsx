@@ -9,14 +9,16 @@ import {
 import { title } from "process";
 import { useState, useEffect } from "react";
 import "./styles.css";
-import { MdCancel } from "react-icons/md";
-import { AiFillDelete } from "react-icons/ai";
+import { RiArrowUpSLine } from "react-icons/ri";
+
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { GrAdd } from "react-icons/gr";
 
 const Home = () => {
-  var [selectedElement, setselectedElement] = useState();
-  const [isEdit, setEdit] = useState(false);
+  var [editing, setediting] = useState();
+  const [edit, setEdit] = useState(false);
   const [items, setItems] = useState([]);
-  const [IsnewItem, setNewItem] = useState(false);
+  const [isAdd, setAdd] = useState(false);
   const [img, setImg] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,17 +31,17 @@ const Home = () => {
     setImg(null);
   };
 
-  const NewItem = () => {
+  const AddItem = () => {
     return (
       <form
         onSubmit={(e) => {
           handleSubmit(e);
-          setNewItem(false);
+          setAdd(false);
         }}
       >
-        <div>
+        <div className="choseIma">
           <label id="selectImg" htmlFor="img">
-           + click here to upload an image
+            + Upload an image
           </label>
           <input
             style={{ display: "none" }}
@@ -53,7 +55,7 @@ const Home = () => {
         </div>
         {img ? (
           <div className="img">
-            <img src={img}/>
+            <img src={img} alt="chosen file" />
           </div>
         ) : (
           ""
@@ -65,21 +67,21 @@ const Home = () => {
           id="eventName"
           placeholder="Event name"
         />
-        <input
+        <textarea
           required
-          type="text"
-          className="input-field"
           name="about"
           id="about"
-          placeholder="About that day"
-        ></input>
+          cols="30"
+          rows="10"
+          placeholder="About that day..."
+        ></textarea>
         <div>
           <IonButton routerLink="/home" type="submit">
             Submit
           </IonButton>
           <IonButton
             onClick={() => {
-              setNewItem(false);
+              setAdd(false);
               setImg(null);
             }}
           >
@@ -107,12 +109,12 @@ const Home = () => {
       <form
         onSubmit={(e) => {
           handleEdit(e, id);
-          setNewItem(false);
+          setAdd(false);
         }}
       >
         <div>
           <label className="selectImg-prev" htmlFor="img">
-            + select an image
+            + Upload an image
           </label>
           <input
             style={{ display: "none" }}
@@ -156,64 +158,84 @@ const Home = () => {
   };
 
   const handleDelete = () => {
-    console.log(selectedElement);
-    items.splice(selectedElement, 1);
+    console.log(editing);
+    items.splice(editing, 1);
     setItems(items);
     setImg(null);
     setEdit(false);
   };
   useEffect(() => {
-    console.log(selectedElement);
-  }, [selectedElement]);
+    console.log(editing);
+  }, [editing]);
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Events App</IonTitle>
+          <IonTitle style={{ textAlign: "center" }}>Event Gallery App</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         {
           <div className="App">
-            {!IsnewItem ? (
+            {!isAdd ? (
               <>
                 <div className="items">
                   {items.map((e) => {
                     return (
-                      <div key={Math.random() * 2324240} className="itm">
-                        <img src={e.image} alt="No image selected for this event :/" />
-                        {isEdit && selectedElement == items.indexOf(e) ? (
+                      <div key={Math.random() * 808972} className="itm">
+                        {edit && editing == items.indexOf(e) ? (
+                          <h3
+                            style={{
+                              textAlign: "center",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {e.name}
+                          </h3>
+                        ) : (
+                          ""
+                        )}
+                        <img
+                          src={e.image}
+                          alt="No image selected for this event :/"
+                        />
+                        {edit && editing == items.indexOf(e) ? (
                           <>
-                            <span>Name of the event :{e.name}</span>
-                            <span>About : {e.about}</span>
+                            <span>
+                              <p>"{e.about}"</p>
+                            </span>
                             <Update id={items.indexOf(e)} />
                           </>
                         ) : (
                           ""
                         )}
 
-                        <span id="editing">
+                        <span id="edit">
                           <IonButton
                             id={items.indexOf(e)}
                             onClick={(e) => {
-                              setEdit(!isEdit);
-                              setselectedElement(e.target.id);
+                              setEdit(!edit);
+                              setediting(e.target.id);
                               console.log(e.target.id);
                               setImg(null);
                             }}
                           >
-                            {isEdit && selectedElement == items.indexOf(e) ? (
-                              "Cancel"
+                            {edit && editing == items.indexOf(e) ? (
+                              <RiArrowUpSLine />
                             ) : (
-                              "Edit"
+                              <>
+                                <span>Edit</span>
+                                <AiFillEdit />
+                              </>
                             )}
                           </IonButton>
-                          {isEdit && selectedElement == items.indexOf(e) ? (
+                          {edit && editing == items.indexOf(e) ? (
                             <button
                               id="deleteEvent"
                               onClick={() => handleDelete()}
                             >
-                              Delete
+                              <span>Delete</span>
+                              <AiFillDelete size="18px" />
                             </button>
                           ) : (
                             ""
@@ -223,13 +245,15 @@ const Home = () => {
                     );
                   })}
                 </div>
-                <IonButton onClick={() => setNewItem(true)}>New Event</IonButton>
+                <IonButton onClick={() => setAdd(true)}>
+                  <GrAdd color="white" /> Add Event
+                </IonButton>
               </>
             ) : (
               ""
             )}
 
-            {IsnewItem ? <NewItem /> : ""}
+            {isAdd ? <AddItem /> : ""}
           </div>
         }
       </IonContent>

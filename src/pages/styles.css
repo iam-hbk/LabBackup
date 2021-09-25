@@ -1,3 +1,6 @@
+:root{
+  --background:"light-blue"
+}
 .App {
   font-family: sans-serif;
   overflow-y: scroll;
@@ -13,7 +16,7 @@ form {
   flex-direction: column;
   padding: 30px 2vw;
 }
-div.itm form{
+div.itm form {
   width: 90%;
 }
 .input-field {
@@ -26,7 +29,7 @@ div.itm form{
   font-style: italic;
   padding: 10px;
   cursor: pointer;
-  /* background: rgba(0, 0, 0, 0.416); */
+  background: darkgray;
 }
 .selectImg-prev {
   font-style: italic;
@@ -70,13 +73,14 @@ div .items {
   align-items: center;
 }
 div.itm {
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
   margin-top: 10px;
   padding: 5px;
   width: 100%;
   position: relative;
+  box-shadow: 0 0 10px lightgray;
+  border-radius: 20px;
 }
 div.itm img {
   width: inherit;
@@ -102,18 +106,30 @@ div.itm span#editing {
   padding: 10px;
   border-radius: 5px;
   margin-right: 5px;
-  text-transform:uppercase;
-  box-shadow: 0 0 5px gray;
-
+  text-transform: uppercase;
+  box-shadow: 0 0 5px rgb(255, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 span#edit {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 0 10px;
 }
 ion-button {
-  --background: black;
+  background: rgb(131, 58, 180);
+  --background: linear-gradient(
+    45deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgb(49, 40, 173) 70%
+  );
   /* border: 2px solid black; */
   color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+p{
+  font-style: italic;
+  color: gray;
 }
