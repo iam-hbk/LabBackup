@@ -13,10 +13,10 @@ import { MdCancel } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 
 const Home = () => {
-  var [currentEdit, setCurrentEdit] = useState();
-  const [edit, setEdit] = useState(false);
+  var [selectedElement, setselectedElement] = useState();
+  const [isEdit, setEdit] = useState(false);
   const [items, setItems] = useState([]);
-  const [isAdd, setAdd] = useState(false);
+  const [IsnewItem, setNewItem] = useState(false);
   const [img, setImg] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,12 +34,12 @@ const Home = () => {
       <form
         onSubmit={(e) => {
           handleSubmit(e);
-          setAdd(false);
+          setNewItem(false);
         }}
       >
-        <div className="choseIma">
+        <div>
           <label id="selectImg" htmlFor="img">
-            select an image
+            Choose an image
           </label>
           <input
             style={{ display: "none" }}
@@ -53,7 +53,7 @@ const Home = () => {
         </div>
         {img ? (
           <div className="img">
-            <img src={img} alt="chosen file" />
+            <img src={img}/>
           </div>
         ) : (
           ""
@@ -65,21 +65,21 @@ const Home = () => {
           id="eventName"
           placeholder="Event name"
         />
-        <textarea
+        <input
           required
+          type="text"
+          className="input-field"
           name="about"
           id="about"
-          cols="30"
-          rows="10"
           placeholder="About that day..."
-        ></textarea>
+        ></input>
         <div>
           <IonButton routerLink="/home" type="submit">
             Submit
           </IonButton>
           <IonButton
             onClick={() => {
-              setAdd(false);
+              setNewItem(false);
               setImg(null);
             }}
           >
@@ -107,7 +107,7 @@ const Home = () => {
       <form
         onSubmit={(e) => {
           handleEdit(e, id);
-          setAdd(false);
+          setNewItem(false);
         }}
       >
         <div>
@@ -156,33 +156,33 @@ const Home = () => {
   };
 
   const handleDelete = () => {
-    console.log(currentEdit);
-    items.splice(currentEdit, 1);
+    console.log(selectedElement);
+    items.splice(selectedElement, 1);
     setItems(items);
     setImg(null);
     setEdit(false);
   };
   useEffect(() => {
-    console.log(currentEdit);
-  }, [currentEdit]);
+    console.log(selectedElement);
+  }, [selectedElement]);
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Event Gallery App</IonTitle>
+          <IonTitle>Events App</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         {
           <div className="App">
-            {!isAdd ? (
+            {!IsnewItem ? (
               <>
                 <div className="items">
                   {items.map((e) => {
                     return (
-                      <div key={Math.random() * 100000} className="itm">
+                      <div key={Math.random() * 2324240} className="itm">
                         <img src={e.image} alt="No image selected for this event :/" />
-                        {edit && currentEdit == items.indexOf(e) ? (
+                        {isEdit && selectedElement == items.indexOf(e) ? (
                           <>
                             <span>Name of the event :{e.name}</span>
                             <span>About : {e.about}</span>
@@ -192,28 +192,28 @@ const Home = () => {
                           ""
                         )}
 
-                        <span id="edit">
+                        <span id="editing">
                           <IonButton
                             id={items.indexOf(e)}
                             onClick={(e) => {
-                              setEdit(!edit);
-                              setCurrentEdit(e.target.id);
+                              setEdit(!isEdit);
+                              setselectedElement(e.target.id);
                               console.log(e.target.id);
                               setImg(null);
                             }}
                           >
-                            {edit && currentEdit == items.indexOf(e) ? (
+                            {isEdit && selectedElement == items.indexOf(e) ? (
                               <MdCancel />
                             ) : (
                               "Edit"
                             )}
                           </IonButton>
-                          {edit && currentEdit == items.indexOf(e) ? (
+                          {isEdit && selectedElement == items.indexOf(e) ? (
                             <button
                               id="deleteEvent"
                               onClick={() => handleDelete()}
                             >
-                              <AiFillDelete size="26px" />
+                              Delete
                             </button>
                           ) : (
                             ""
@@ -223,13 +223,13 @@ const Home = () => {
                     );
                   })}
                 </div>
-                <IonButton onClick={() => setAdd(true)}>Add Item</IonButton>
+                <IonButton onClick={() => setNewItem(true)}>Add Item</IonButton>
               </>
             ) : (
               ""
             )}
 
-            {isAdd ? <AddItem /> : ""}
+            {IsnewItem ? <AddItem /> : ""}
           </div>
         }
       </IonContent>

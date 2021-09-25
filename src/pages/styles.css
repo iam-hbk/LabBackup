@@ -5,38 +5,34 @@
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  /* text-align: center; */
 }
 form {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  /* align-items: center; */
 }
 .input-field{
   margin: 15px 10px 0 0;
   padding: 10px;
+  border: none;
+  border-bottom: 1px solid;
 
 }
 #selectImg{
-  margin: 10px;
-  border-radius: 5px;
-  background-color: black;
-  color:white;
+  font-style: italic;
   padding:10px;
+  background: rgba(0, 0, 0, 0.416);
 }
 .selectImg-prev{
-  margin: 10px;
-  border-radius: 5px;
-  background-color: black;
-  color:white;
+  font-style: italic;
   padding:10px;
+  background: rgba(0, 0, 0, 0.416);
 }
 div.img {
   margin: 20px;
   height: 250px;
+  width: 100%;
   border: 2px solid black;
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,7 +62,6 @@ div.itm {
   border: 2px solid black;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
   margin-top: 10px;
   padding: 5px;
   width: 100%;
@@ -77,22 +72,26 @@ div.itm img{
   height: 200px;
   position: relative;
 }
-div.itm span#edit {
+div.itm span#editing {
   position: absolute;
   bottom: 0;
   right: 0;
   margin: 0;
   padding: 0;
-  /* width: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #deleteEvent{
   border:none;
   outline :none;
   cursor: pointer;
-  border-radius: 100px;
   background-color: red;
   color: white;
-  padding: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+
 
 }
 span#edit{
@@ -100,4 +99,7 @@ span#edit{
   justify-content: center;
   align-items: center;
   margin: 0 10px;
+}
+ion-button{
+  --background: rgb(4, 127, 4);
 }
