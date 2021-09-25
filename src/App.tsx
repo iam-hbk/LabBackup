@@ -14,7 +14,6 @@ const App: React.FC = () => (
         <Route exact path="/home">
           <Home />
         </Route>
-        {/* <Route exact path="/Add" component={Add}/> */}
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>

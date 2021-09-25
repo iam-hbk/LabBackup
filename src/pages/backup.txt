@@ -181,10 +181,24 @@ const Home = () => {
                   {items.map((e) => {
                     return (
                       <div key={Math.random() * 100000} className="itm">
-                        <img src={e.image} alt="No image selected for this event :/" />
+                        {edit && currentEdit == items.indexOf(e) ? (
+                          <h3
+                            style={{
+                              textAlign: "center",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {e.name}
+                          </h3>
+                        ) : (
+                          ""
+                        )}
+                        <img
+                          src={e.image}
+                          alt="No image selected for this event :/"
+                        />
                         {edit && currentEdit == items.indexOf(e) ? (
                           <>
-                            <span>Name of the event :{e.name}</span>
                             <span>About : {e.about}</span>
                             <Update id={items.indexOf(e)} />
                           </>
